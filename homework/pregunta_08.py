@@ -7,6 +7,26 @@ utilizar pandas, numpy o scipy.
 
 
 def pregunta_08():
+    
+    import csv
+    from collections import defaultdict
+
+    # Crear un diccionario para almacenar las letras asociadas a cada valor de la columna 2
+    value_to_letters = defaultdict(set)
+
+    # Leer el archivo CSV y asociar las letras a los valores de la columna 2
+    with open('./files/input/data.csv', 'r') as file:
+        reader = csv.reader(file, delimiter='\t')
+        for row in reader:
+            value = int(row[1])
+            letter = row[0]
+            value_to_letters[value].add(letter)
+
+    # Convertir el diccionario a una lista de tuplas, ordenar las letras y ordenar por los valores de la columna 2
+    sorted_value_to_letters = sorted((value, sorted(letters)) for value, letters in value_to_letters.items())
+
+    return sorted_value_to_letters
+
     """
     Genere una lista de tuplas, donde el primer elemento de cada tupla
     contiene  el valor de la segunda columna; la segunda parte de la tupla

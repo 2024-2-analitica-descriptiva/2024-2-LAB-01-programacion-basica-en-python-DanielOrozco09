@@ -7,6 +7,32 @@ utilizar pandas, numpy o scipy.
 
 
 def pregunta_06():
+    
+    import csv
+    from collections import defaultdict
+
+    # Crear un diccionario para almacenar el valor máximo y mínimo por cada clave en la columna 5
+    min_max_dict = defaultdict(lambda: [float('inf'), float('-inf')])
+
+    # Leer el archivo CSV y procesar los valores de la columna 5
+    with open('./files/input/data.csv', 'r') as file:
+        reader = csv.reader(file, delimiter='\t')
+        for row in reader:
+            # Obtener los pares clave:valor de la columna 5
+            key_value_pairs = row[4].split(',')
+            for pair in key_value_pairs:
+                key, value = pair.split(':')
+                value = int(value)
+                if value < min_max_dict[key][0]:
+                    min_max_dict[key][0] = value
+                if value > min_max_dict[key][1]:
+                    min_max_dict[key][1] = value
+
+    # Convertir el diccionario a una lista de tuplas y ordenarla alfabéticamente por clave
+    sorted_min_max_dict = sorted((key, values[0], values[1]) for key, values in min_max_dict.items())
+
+    return sorted_min_max_dict
+
     """
     La columna 5 codifica un diccionario donde cada cadena de tres letras
     corresponde a una clave y el valor despues del caracter `:` corresponde al

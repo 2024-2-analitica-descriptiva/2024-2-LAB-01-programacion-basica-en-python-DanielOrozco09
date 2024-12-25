@@ -8,21 +8,24 @@ utilizar pandas, numpy o scipy.
 
 def pregunta_01():
 
-    column_names = ['Letra', 'Numero', 'Fecha', 'Serie','Codigo']
-    data = pd.read_csv("../files/input/data.csv",
-        sep="	",
-        names = column_names
-        # thousands=None,
-        # decimal=".",
-    )
+    import csv
 
-    suma = data['Numero'].sum()
+    # Inicializar la suma
+    suma_columna_2 = 0
 
-    return suma
-    """
-    Retorne la suma de la segunda columna.
+    # Leer el archivo CSV y sumar los valores de la columna 2
+    with open('./files/input/data.csv', 'r') as file:
+        reader = csv.reader(file, delimiter='\t')
+        for row in reader:
+            suma_columna_2 += int(row[1])
 
-    Rta/
-    214
+    print(suma_columna_2)
 
-    """
+
+"""
+Retorne la suma de la segunda columna.
+
+Rta/
+214
+
+"""

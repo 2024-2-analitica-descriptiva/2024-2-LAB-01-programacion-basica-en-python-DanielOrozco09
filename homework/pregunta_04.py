@@ -7,6 +7,26 @@ utilizar pandas, numpy o scipy.
 
 
 def pregunta_04():
+    
+    import csv
+    from collections import Counter
+
+    # Crear un contador para almacenar la cantidad de registros por cada mes
+    month_counter = Counter()
+
+    # Leer el archivo CSV y contar los registros por cada mes en la columna 3
+    with open('./files/input/data.csv', 'r') as file:
+        reader = csv.reader(file, delimiter='\t')
+        for row in reader:
+            date = row[2]
+            month = date[5:7]  # Extraer el mes de la fecha en formato YYYY-MM-DD
+            month_counter[month] += 1
+
+    # Convertir el contador a una lista de tuplas y ordenarla por mes
+    sorted_month_counts = sorted(month_counter.items())
+
+    return sorted_month_counts
+
     """
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la
     cantidad de registros por cada mes, tal como se muestra a continuación.
