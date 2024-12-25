@@ -19,7 +19,7 @@ def pregunta_01():
         for row in reader:
             suma_columna_2 += int(row[1])
 
-    print(suma_columna_2)
+    return suma_columna_2
 
 
 """
