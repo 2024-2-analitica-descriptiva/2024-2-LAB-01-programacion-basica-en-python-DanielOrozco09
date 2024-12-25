@@ -7,6 +7,18 @@ utilizar pandas, numpy o scipy.
 
 
 def pregunta_01():
+
+    column_names = ['Letra', 'Numero', 'Fecha', 'Serie','Codigo']
+    data = pd.read_csv("../files/input/data.csv",
+        sep="	",
+        names = column_names
+        # thousands=None,
+        # decimal=".",
+    )
+
+    suma = data['Numero'].sum()
+
+    return suma
     """
     Retorne la suma de la segunda columna.
 
